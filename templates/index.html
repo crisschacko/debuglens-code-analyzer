@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DebugLens | AI Code Debugging Assistant</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+
+<body>
+
+<header>
+    <nav class="navbar">
+        <div class="logo">DebugLens</div>
+        <span class="badge">AI CODE ANALYZER</span>
+    </nav>
+</header>
+
+<main>
+
+    <section class="hero">
+        <p class="eyebrow">SMART DEBUGGING</p>
+        <h1>Find the problem.<br><span>Understand the solution.</span></h1>
+        <p>
+            Paste your code and error message to identify common programming
+            issues and get clear debugging suggestions.
+        </p>
+    </section>
+
+    <section class="scanner">
+
+        <form method="POST">
+
+            <label for="code">Your Code</label>
+            <textarea
+                id="code"
+                name="code"
+                placeholder="Paste your code here..."
+                required></textarea>
+
+            <label for="error">Error Message</label>
+            <textarea
+                id="error"
+                name="error"
+                placeholder="Paste the error message here (optional)..."></textarea>
+
+            <button type="submit">Analyze Code →</button>
+
+        </form>
+
+    </section>
+
+    {% if result %}
+    <section class="result">
+
+        <div class="result-header">
+            <p class="eyebrow">ANALYSIS RESULT</p>
+            <h2>{{ result.status }}</h2>
+        </div>
+
+        <div class="result-grid">
+
+            <div class="result-card">
+                <h3>Possible Issues</h3>
+
+                {% for issue in result.issues %}
+                <p>⚠ {{ issue }}</p>
+                {% endfor %}
+            </div>
+
+            <div class="result-card">
+                <h3>Suggestions</h3>
+
+                {% for suggestion in result.suggestions %}
+                <p>✓ {{ suggestion }}</p>
+                {% endfor %}
+            </div>
+
+        </div>
+
+    </section>
+    {% endif %}
+
+    <section class="features">
+
+        <div class="feature">
+            <span>01</span>
+            <h3>Analyze</h3>
+            <p>Examines the submitted code and error message.</p>
+        </div>
+
+        <div class="feature">
+            <span>02</span>
+            <h3>Identify</h3>
+            <p>Recognizes common programming errors and issues.</p>
+        </div>
+
+        <div class="feature">
+            <span>03</span>
+            <h3>Explain</h3>
+            <p>Provides simple suggestions to help understand the problem.</p>
+        </div>
+
+    </section>
+
+</main>
+
+<footer>
+    <p>DebugLens · Built by Criss Chacko</p>
+</footer>
+
+</body>
+  </html>
